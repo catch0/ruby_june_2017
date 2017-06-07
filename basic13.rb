@@ -9,16 +9,15 @@ end
 =end
 
 # 2
-=begin
+
 i = 1
 num = 255
 while i <= num do
-   unless i%2 ==0 
+   unless i%2 ==0
    puts " #{i}"
    end
    i +=1
 end
-=end
 
 #3
 =begin
@@ -47,7 +46,7 @@ end
 #6
 #x = [-5,-12,-20]
 #puts x.max
-  
+
 #7
 =begin
 a = [2,6]
@@ -57,11 +56,11 @@ average = sum / a.length
 puts average
 =end
 
-#8 
+#8
 =begin
 arr = []
 for i in 0..255
-    unless i%2 ==0 
+    unless i%2 ==0
     arr.push(i)
     end
 end
@@ -120,5 +119,3 @@ for i in 0...a.length
 end
 print a
 =end
-
-
