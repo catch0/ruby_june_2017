@@ -1,0 +1,69 @@
+    
+<div id = "gold"> 
+    <p>Your Gold: <%= @gold %> </p>
+</div>
+<div class = "places" id="farm">
+<!--farm-->        
+        <form action = "gimme" method="post">
+            <input name = "authenticity_token" value="<%=
+            form_authenticity_token %>" type = "hidden">
+            <input type="hidden" name="location" value ="farm">
+            <h4> Farm</h4>
+            <p> (earns 10-20 gold)</p>
+            <input type = "submit" value="Git Some Gold!">
+        </form>
+</div>
+<!--cave-->
+<div class = "places" id = "cave">
+        <form action = "gimme" method="post">
+            <input name = "authenticity_token" value="<%=
+            form_authenticity_token %>" type = "hidden">
+            <input type="hidden" name="location" value ="cave">
+            <h4> Cave</h4>
+            <p> (earns 5-10 gold)</p>
+            <input type = "submit" value="Git Some Gold!">
+        </form>
+</div>
+<!--house-->
+ <div class ="places" id= "house">
+            <form action = "gimme" method="post">
+            <input name = "authenticity_token" value="<%=
+            form_authenticity_token %>" type = "hidden">
+            <input type="hidden" name="location" value ="house">
+            <h4> House </h4>
+            <p> (earns 2-5 gold)</p>
+            <input type = "submit" value="Git Some Gold!">
+        </form>
+</div>
+<!--casino-->
+<div class = "places" id= "casino">
+        <form action = "gimme" method="post">
+            <input name = "authenticity_token" value="<%=
+            form_authenticity_token %>" type = "hidden">
+            <input type="hidden" name="location" value ="casino">
+            <h4> Casino </h4>
+            <p> (earns/takes 0-50 gold)</p>
+            <input type = "submit" value="Git Some Gold!">
+        </form>
+<!--clear this-->
+</div>
+
+<div id = "clear"> 
+<form action="clear" method="post">
+    <input name = "authenticity_token" value="<%=
+    form_authenticity_token %>" type = "hidden">    
+    <input type = "submit" value="clear">
+</form>
+</div>
+    
+<h3> Activities </h3>
+		<div id="activities">				<!-- Show the messages by reverse to see the latest activity -->
+			<% @activities.each do |element| %>
+				<% if element.include?("Earned") %>
+					<p class="earned"><%= element %></p>
+				<% else %>
+					<p class="lost"><%= element %></p>
+				<% end %>
+			<% end %>
+		</div>
+       
