@@ -1,8 +1,8 @@
-<h1>Listing 3 Dojos!!</h1>
+<h1>Listing Dojos!!</h1>
 <table>
     <th>
         <tr>
-        <td> Coding Dojo Branch</td>
+        <td> Branch</td>
         <td> Street</td>
         <td> City </td>
         <td> State</td>
@@ -16,8 +16,8 @@
     <td> <%= branch.city %> </td>
     <td> <%= branch.state %> </td>
     <td> <a href="show/<%= branch.id%>">show </a></td>
-    <td> <a href="/edit " value="patch" method="post"> edit </a></td>
-    <td> <a href="/delete " value="patch" method="post"> delete </a></td>        
+    <td> <a href="/edit/<%= branch.id%>" value="patch" method="post"> edit </a></td>
+    <td> <a href="/delete/<%= branch.id%> " value="delete" method="post"> delete </a></td>        
     </tr>
 <% end %>
 </table>
