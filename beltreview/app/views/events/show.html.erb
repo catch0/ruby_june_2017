@@ -1,0 +1,45 @@
+<h1> Here is the page for the <%= @event.name %> </h1>
+
+<h4> Name of Event: </h4>
+<p> <%= @event.name %> </p>
+<h4> Date of Event </h4>
+<p> <%= @event.date %></p>
+<h4> Our Host is: </h4>
+<p> <%=@event.user.first_name %> <%= @event.user.last_name %></p>
+<h4> Number of attendents so far: </h4>
+<p> <%= Guest.where(event: @event.id).length %></p>
+
+<h4> attendants so far </h4>
+    <table>
+        <th>
+            <tr>
+            <td> First Name</td>
+            <td> Last Name </td>
+            <td> Location  </td>
+            </tr>
+        </th>
+            <tr>
+                <% @guests.each do |guest|%>        
+            <td>  <%= guest.user.first_name %></td>
+            <td> <%= guest.user.last_name %> </td>
+            <td> <%= guest.user.location %> </td>
+            </tr>
+                <% end %>
+    </table>
+
+<div id = "comments">
+<h5> Discussion about the event</h5>
+    <div id = "garbage">
+    
+    </div>
+<form action = "/comments" method="post"> 
+    <textarea name="content">
+
+
+    </textarea>
+    <input type="submit">
+</form>
+</div>
+
+
+

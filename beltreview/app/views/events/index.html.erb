@@ -1,0 +1,88 @@
+<h1> Sup <%= @user.first_name %> Look at these bomb ass events yo ! </h1>
+<div class = "logout"> 
+<a href="/sessions" data-method="delete" class="logout"> Logout</a>    
+</div>
+
+<div id = "left"> 
+<h4> Here are some of the Events in your own state of <%= @user.state %></h4>
+    <table>
+        <th>
+            <tr>
+            <td> Name </td>
+            <td> Date </td>
+            <td> Location </td>
+            <td> Host </td>
+            <td> Action/Status</td>
+            </tr>
+        </th>
+            <tr>
+            <% @stevents.each do |event| %>
+            <td><a href="/events/<%= event.id%>" method="post"> <%= event.name %></a></td>
+            <td> <%= event.date %> </td>
+            <td> <%= event.location %></td>
+            <td> <%= event.user.first_name %></td>    
+                <% if event.user_id == session[:user_id] %>
+                    <td> <a href = "/events/<%= event.id %>" data-method="delete">Cancel Event</a> </td>
+                <% end %>
+                here: <%= @events_attending_ids.include? event.id %>
+                <% if @events_attending_ids.include? event.id %>
+                    <td> <a href="/guests/<%=event.id%>" data-method="delete"> Cancel Attendence </a></td>
+                <% else %>
+                    <td> <a href="/guests/<%= event.id%>" data-method="post"> Join </a></td>
+                <% end %>
+            </tr>
+            <% end %>
+    </table>
+</div>
+
+<div id = "right">
+    <h4> Here are some events in other states not as cool as <%= @user.state %> </h4>
+    <table>
+        <th>
+            <tr>
+            <td> Name </td>
+            <td> Date </td>
+            <td> Location </td>
+            <td> State  </td>
+            <td> Host </td>
+            <td> Action/Status</td>
+            </tr>
+        </th>
+            <tr>
+            <% @events.each do |event| %> 
+            <td><a href="/events/<%= event.id%>" method="post"> <%= event.name %></a></td>
+            <td> <%= event.date %> </td>
+            <td> <%= event.location %></td>
+            <td> <%= event.state %> </td>            
+            <td> <%= event.user.first_name %></td>
+                <% if event.user_id == session[:user_id] %>
+                    <td> <a href = "/events/<%= event.id %>" data-method="delete">Cancel Event</a> </td>
+                <% end %>
+                <% if @events_attending_ids.include? event.id %>
+                <td> <a href="/guests/<%=event.id%>" data-method="delete"> Cancel Attendence </a></td>
+                <% else %>
+                 <td> <a href="/guests/<%= event.id%>" data-method="post"> Join </a></td>
+                <% end %>
+        </tr>
+        <% end %>
+    </table>    
+</div>
+
+<div id = "events"> 
+    <form action = "/events" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">            
+        <h3> Add an Event </h3>
+        <label> Name</label>
+            <input type = "text" name = "event[name]">
+        <label> Date </label>
+            <input type= "date" name = "event[date]">
+        <label> Location</label>
+            <input type = "text" name = "event[location]">
+        <%=select_tag 'State', options_for_select(us_states),:name=>"event[state]",:id=>"state"%> 
+        <input type = "submit" value = "add event">
+</form>
+      <% if flash[:event_errors] %>
+    <p class = "errors"> <%= flash[:event_errors] %></p>
+    <% end %> 
+
+          
